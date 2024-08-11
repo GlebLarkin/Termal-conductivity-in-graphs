@@ -7,6 +7,7 @@
 #include <string>
 #include <mutex>
 #include <memory>
+#include <stdexcept>
 
 #include <Eigen/Dense>
 #include <nlohmann/json.hpp>

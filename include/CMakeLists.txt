@@ -11,4 +11,3 @@ set(HEADERS
 )
 
 set_property(TARGET TermalConductivityInGraphs PROPERTY INCLUDE_DIRECTORIES ${HEADERS})
-
