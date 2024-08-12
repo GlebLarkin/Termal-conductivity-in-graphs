@@ -14,12 +14,12 @@ public:
 private:
   AnalyticalSolver(std::shared_ptr<Graph> & graph);
 
-  Eigen::MatrixXd laplace_matrix;
+  Eigen::MatrixXd laplace_matrix_;
 
   Eigen::MatrixXd createLaplaceMatrix() const;
   bool computeEigenvaluesAndEigenvectors(const Eigen::MatrixXd& laplace_matrix) const;
-  bool saveJsonData(const std::vector<double_t> & current_time);
-  std::vector<double_t> computeTemperatures (const double_t measurment_time, const double_t dt) const;
+  bool saveJsonData(std::vector<double_t> & current_temperature, double_t current_time) const;
+  std::vector<double_t> computeTemperatures (const double_t current_time) const;
 
   static std::shared_ptr<AnalyticalSolver> instance_;
   static std::mutex mutex_;
