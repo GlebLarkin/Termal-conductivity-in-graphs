@@ -26,3 +26,40 @@ bool AnalyticalSolver::solve(const double_t measurment_time, const double_t dt) 
     AnalyticalSolver::saveJsonData(current_temp, current_time);
   }
 }
+
+//this func turns keys into indexes for laplace matrix being correct (indexes < matrix size)
+std::unordered_map<uint32_t, uint32_t> keyToIndex(const std::shared_ptr<const std::unordered_map<uint32_t, Node>> & map)
+{
+  std::unordered_map<uint32_t, uint32_t> index_map;
+  auto index = 0;
+
+  for (const auto & [key, _] : *map) index_map.emplace(key, index++);
+
+  return index_map;
+}
+
+Eigen::MatrixXd AnalyticalSolver::createLaplaceMatrix() 
+{
+  auto adjacency_list_ptr_ = graph_ptr_->getAdjacencyListPtr();
+  auto n = adjacency_list_ptr_->size();
+  Eigen::MatrixXd laplace_matrix = Eigen::MatrixXd::Zero(n, n);
+
+  auto index_map = keyToIndex(adjacency_list_ptr_);
+
+  for (const auto& [key, node] : *adjacency_list_ptr_) 
+  {
+    auto i = index_map[key];
+
+    laplace_matrix(i, i) = static_cast<double>(node.connected_edges.size());
+
+    for (auto neighbor_key : node.connected_edges)
+    {
+      auto neighbor = index_map[neighbor_key]; 
+
+      if (neighbor == i) continue;
+      laplace_matrix(i, neighbor) = -1;
+    }
+  }
+
+  return laplace_matrix;
+}

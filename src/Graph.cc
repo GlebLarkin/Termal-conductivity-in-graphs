@@ -84,3 +84,8 @@ bool Graph::parseJson(const nlohmann::json& json_data)
         adjacency_list_[node_id] = node;
     }
 }
+
+std::shared_ptr<const std::unordered_map<uint32_t, Node>> Graph::getAdjacencyListPtr() const
+{
+  return std::make_shared<const std::unordered_map<uint32_t, Node>>(adjacency_list_);
+}

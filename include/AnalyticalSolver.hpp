@@ -16,7 +16,7 @@ private:
 
   Eigen::MatrixXd laplace_matrix_;
 
-  Eigen::MatrixXd createLaplaceMatrix() const;
+  Eigen::MatrixXd createLaplaceMatrix();
   bool computeEigenvaluesAndEigenvectors(const Eigen::MatrixXd& laplace_matrix) const;
   bool saveJsonData(std::vector<double_t> & current_temperature, double_t current_time) const;
   std::vector<double_t> computeTemperatures (const double_t current_time) const;

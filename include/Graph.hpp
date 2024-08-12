@@ -22,6 +22,8 @@ public:
 
   bool showGraphData() const;
 
+  std::shared_ptr<const std::unordered_map<uint32_t, Node>> getAdjacencyListPtr() const;
+
 private:
   Graph(const std::string& filename);
 

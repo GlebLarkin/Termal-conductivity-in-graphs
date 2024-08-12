@@ -14,11 +14,9 @@ public:
 protected:
   Solver(const std::shared_ptr<Graph>& graph_ptr);
 
-  std::shared_ptr<Graph> getGraph() const;
+  const std::shared_ptr<Graph> graph_ptr_;
 
 private:
-  std::shared_ptr<Graph> graph_ptr_;
-
   Solver() = delete;
   Solver(const Solver&) = delete;
   Solver& operator=(const Solver&) = delete;
@@ -26,4 +24,3 @@ private:
 
 
 #endif
-
