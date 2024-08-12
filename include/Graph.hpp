@@ -13,7 +13,7 @@ struct Node
 class Graph
 {
 public:
-  static Graph& getInstance(const std::string& filename);
+  static std::shared_ptr<Graph> & getInstance(const std::string& filename = "../data/input.json");
 
   // working with temperature block
   double_t findAvarageTemperature() const;
@@ -32,6 +32,8 @@ private:
   bool parseJson(const nlohmann::json& json_data);
 
   std::unordered_map<uint32_t, Node> adjacency_list_;
+
+  static std::shared_ptr<Graph> instance_;
 };
 
 

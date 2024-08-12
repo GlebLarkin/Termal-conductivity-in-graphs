@@ -12,9 +12,9 @@ public:
   bool solve(const double_t measurment_time, const double_t dt) const override;
 
 private:
-  AnalyticalSolver(std::shared_ptr<Graph> graph);
+  AnalyticalSolver(std::shared_ptr<Graph> & graph);
 
-  Eigen::MatrixXd laplace_matrix; //= std::move<createLaplaceMatrix()>
+  Eigen::MatrixXd laplace_matrix;
 
   Eigen::MatrixXd createLaplaceMatrix() const;
   bool computeEigenvaluesAndEigenvectors(const Eigen::MatrixXd& laplace_matrix) const;

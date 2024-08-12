@@ -49,9 +49,15 @@ bool Graph::showGraphData() const
   }
 }
 
-Graph& Graph::getInstance(const std::string & filename = "../data/input.json")
+std::shared_ptr<Graph> Graph::instance_ = nullptr;
+
+std::shared_ptr<Graph> & Graph::getInstance(const std::string & filename = "../data/input.json")
 {
-    static Graph instance(filename);
+  if (!instance_)
+  {
+    instance_ = std::shared_ptr<Graph>(new Graph(filename));
+    return instance_;
+  }
 }
 
 Graph::Graph(const std::string & filename)
