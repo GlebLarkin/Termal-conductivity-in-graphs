@@ -1,6 +1,6 @@
 #include "Graph.hpp"
 
-double_t Graph::findAvarageTemperature() const
+/* double_t Graph::findAvarageTemperature() const
 {
   auto total_temp = 0;
 
@@ -48,7 +48,7 @@ bool Graph::showGraphData() const
     std::cout << "\n";
   }
 }
-
+*/
 std::shared_ptr<Graph> Graph::instance_ = nullptr;
 
 std::shared_ptr<Graph> & Graph::getInstance(const std::string & filename = "../data/input.json")
